@@ -15,8 +15,8 @@ void setup() {
   display.init();
 }
 void loop() {
-  float h = dht.readHumidity();             //รับค่าความชื้น
-  float t = dht.readTemperature();          //รับค่าอุณหภูมิ
+  float h = dht.readHumidity();             
+  float t = dht.readTemperature();          
   Serial.println("Temp = "+String(t,1)+" C");
   Serial.println("Humi = "+String(h,1)+" %");
   display.setFont(ArialMT_Plain_10);
