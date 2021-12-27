@@ -104,6 +104,6 @@ void loop() {
   Serial.println("==========");
   Serial.println("closing connection");
     
-  delay(2000);  //GET Data at every 2 seconds
+  delay(10000);  //GET Data at every 2 seconds
 }
 //=======================================================================

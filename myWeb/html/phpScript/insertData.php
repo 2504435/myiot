@@ -1,33 +1,19 @@
 <?php
 
-$servername = "db";
-// REPLACE with your Database name
-$dbname = "surapong_db";
-// REPLACE with Database user
-$username = "surapong";
-// REPLACE with Database user password
-$password = "kali";
-
+require('dbconnect.php');
 // Keep this API Key value to be compatible with the ESP32 code provided in the project page. 
 // If you change this value, the ESP32 sketch needs to match
 $api_key_value = "tPmAT5Ab3j7F9";
 
 $api_key= $sensor = $location = $temp = $humid = "";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $api_key = test_input($_POST["api_key"]);
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+    $api_key = test_input($_GET["api_key"]);
     if($api_key == $api_key_value) {
-        $sensor = test_input($_POST["sensor"]);
-        $location = test_input($_POST["location"]);
-        $temp = test_input($_POST["temp"]);
-        $humid = test_input($_POST["humid"]);
-        
-        // Create connection
-        $conn = new mysqli($servername, $username, $password, $dbname);
-        // Check connection
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        } 
+        $sensor = test_input($_GET["sensor"]);
+        $location = test_input($_GET["location"]);
+        $temp = test_input($_GET["temp"]);
+        $humid = test_input($_GET["humid"]);
         
         $sql = "INSERT INTO SensorData (sensor, location, temp, humid)
         VALUES ('" . $sensor . "', '" . $location . "', '" . $temp . "', '" . $humid . "')";
