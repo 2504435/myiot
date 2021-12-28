@@ -131,5 +131,5 @@ void loop() {
   delay(30000);  
   }
   delay(1000);
-  Serial.println("begin loop F");
+  Serial.println("Cannot Read Data go to init loop");
 }
