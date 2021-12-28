@@ -3,11 +3,14 @@
 	ini_set('display_startup_errors', 1);
 	error_reporting(E_ALL);
 	date_default_timezone_set("Asia/Bangkok");
+	require("../phpScript/dbconnect.php");
+	$sql = "SELECT id, sensor, location, temp, humid, reading_time FROM SensorData ORDER BY id DESC";
+	$result = mysqli_query($conn, $sql);
+	$row = mysqli_fetch_object($result);
 
 	$sToken = "Xbwik48uzYTipwE2Tr0mISkib2zk0REU0Vqqf5La4m7";
-	$sMessage = "มีรายการสั่งซื้อเข้าจ้า....";
-
-	
+	$sMessage = "Temp exceed limit. Now value is : " . $row->temp . " C Do something.";
+	$conn->close();
 	$chOne = curl_init(); 
 	curl_setopt( $chOne, CURLOPT_URL, "https://notify-api.line.me/api/notify"); 
 	curl_setopt( $chOne, CURLOPT_SSL_VERIFYHOST, 0); 

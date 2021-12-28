@@ -25,6 +25,10 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
     
+        // check whether temp value exceed or not
+        if($temp > 35){
+            require("../phpLineNotify/notify.php");
+        }
         $conn->close();
     }
     else {
